@@ -104,5 +104,5 @@ The pipeline outputs:
 
 ## Troubleshooting
 Troubleshooting is easiest by first looking at the slurm output file, and then more specifically at the output files in the `logfiles` directory to see the exact errors for each attempted download. 
-One of the problems we ran into was the fact that not all genomes were downloading when the pipeline was run. We found that if you just keep running the second half of the pipeline (i.e. commenting out the first line under `# Job commands` of the `download_genomes.sbat` file so that only `snakefile_f2` is being run) then more genomes will download each time. A lot of times there is an error in downloading on the NCBI end and if you run it again it will continue where it left off. Though this is not ideal, it does work. 
+One of the problems we ran into was the fact that not all genomes were downloading when the pipeline was run. We found that if you just keep running the second half of the pipeline (i.e. commenting out the first line under `# Job commands` of the `download_genomes.sbat` file so that only `snakefile_f2` is being run) then more genomes will download each time. There is often an error in downloading on the NCBI end and if you run it again it will continue where it left off. Though this is not ideal, it does work. 
 
