@@ -1,5 +1,6 @@
 #snakefile to generate SRA numbers from biosample accession numbers
 
+# REPLACE 'PATRIC_Biosample_accession_nums' with your own list of Biosample Accession Numbers
 with open('PATRIC_Biosample_accession_nums', 'r') as f:
     biosamps = f.read().splitlines()
 
