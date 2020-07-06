@@ -1,0 +1,9 @@
+name: genome_download
+channels:
+  - conda-forge
+  - bioconda
+  - default
+  - r
+dependencies:
+  - r-tidyverse
+  - entrez-direct

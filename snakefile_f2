@@ -1,0 +1,20 @@
+#snakefile to download genomes from list of SRA ids
+
+with open('SRA_ids.txt', 'r') as f:
+    SRAs = f.read().splitlines()
+
+rule all:
+  input:
+    expand('PATRIC_assemblies/{SRA}_1.fastq',SRA=SRAs),
+    expand('PATRIC_assemblies/{SRA}_2.fastq',SRA=SRAs)
+
+rule download_genome:
+  output:
+    'PATRIC_assemblies/{SRA}_1.fastq',
+    'PATRIC_assemblies/{SRA}_2.fastq'
+  shell:
+    '''
+    source /etc/profile.d/http_proxy.sh
+    /nfs/esnitkin/bin_group/sratoolkit.2.9.1-1-centos_linux64/bin/fasterq-dump {wildcards.SRA} -O PATRIC_assemblies
+    '''
+

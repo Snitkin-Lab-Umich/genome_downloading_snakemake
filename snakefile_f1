@@ -1,0 +1,29 @@
+#snakefile to generate SRA numbers from biosample accession numbers
+
+with open('PATRIC_Biosample_accession_nums', 'r') as f:
+    biosamps = f.read().splitlines()
+
+rule all:
+  input:
+    expand('refs/{biosamp}.txt',biosamp=biosamps),
+    'SRA_Biosample_Ref_File.txt',
+    'SRA_ids.txt'
+
+rule get_SRA_nums:
+  output:
+    'refs/{biosamp}.txt'
+  shell:
+    '''
+    source /etc/profile.d/http_proxy.sh
+    esearch -db sra -query {wildcards.biosamp} </dev/null | efetch -format docsum | xtract -pattern Runs -element Run@acc > {output[0]}
+    '''
+
+rule R_reference_generation:
+  input:
+    expand('refs/{biosamp}.txt',biosamp=biosamps)
+  output:
+    'SRA_Biosample_Ref_File.txt',
+    'SRA_ids.txt'
+  script:
+    'Merge_reference_files.R'
+

@@ -1,0 +1,20 @@
+#!/bin/sh
+# Job name
+#SBATCH --job-name=down_gen
+# User info
+#SBATCH --mail-user=UNIQUENAME@umich.edu
+#SBATCH --mail-type=BEGIN,END,NONE,FAIL,REQUEUE
+#SBATCH --export=ALL
+#SBATCH --partition=standard
+#SBATCH --account=esnitkin1
+# Number of cores, amount of memory, and walltime
+#SBATCH --nodes=1 --ntasks=1 --cpus-per-task=1 --mem=1g --time=10:00:00
+#  Change to the directory you submitted from
+cd $SLURM_SUBMIT_DIR
+echo $SLURM_SUBMIT_DIR
+
+# Load modules
+
+# Job commands
+/nfs/esnitkin/bin_group/miniconda3/bin/snakemake --latency-wait 30 --profile config/slurm -s snakefile_f1
+/nfs/esnitkin/bin_group/miniconda3/bin/snakemake --latency-wait 30 --profile config/slurm -s snakefile_f2
