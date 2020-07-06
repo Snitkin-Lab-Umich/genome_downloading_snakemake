@@ -99,7 +99,7 @@ squeue -u UNIQNAME
 
 The pipeline outputs:
 - A folder called `refs` which should contain files whose names match the Biosample Accession Numbers specified and whose contents are the associated SRA numbers. 
-- A reference file of SRA to Biosample Accession Numbers and a list of the SRA numbers generated from R matching the format of the files in the `r_example_output` folder.
+- A reference file of SRA to Biosample Accession Numbers called `SRA_Biosample_Ref_File.txt` and a list of the SRA numbers called `SRA_ids.txt` generated from R. These files will match the format of the files in the `r_example_output` folder.
 - A folder called `downloaded_assemblies` which contains the forward and backward reads for each SRA number. 
 
 ## Troubleshooting
