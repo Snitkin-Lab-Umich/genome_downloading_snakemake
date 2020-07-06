@@ -83,7 +83,11 @@ squeue -u UNIQNAME
 ```
 
 The pipeline outputs:
-- A folder called refs which should contain files whose names match the Biosample Accession Numbers specified and whose contents are the associated SRA numbers. 
-- R output matching the format of the example_R_output ?? folder
-- A folder called downloaded_genomes (change this to match) which contains the forward and backward reads for each SRA number. 
+- A folder called `refs` which should contain files whose names match the Biosample Accession Numbers specified and whose contents are the associated SRA numbers. 
+- R output matching the format of the `r_example_output` folder
+- A folder called `downloaded_assemblies` which contains the forward and backward reads for each SRA number. 
+
+## Troubleshooting
+Troubleshooting is easiest by first looking at the slurm output file, and then more specifically at the output files in the `logfiles` directory to see the exact errors for each attempted download. 
+One of the problems we ran into was the fact that not all genomes were downloading when the pipeline was run. We found that if you just keep running the second half of the pipeline (i.e. commenting out the first line under `# Job commands` of the `download_genomes.sbat` file so that only the snakefile_f2 is being run) then more genomes will download each time. A lot of times there is an error in downloading on the NCBI end and if you run it again it will continue where it left off. Though this is not ideal, it does work. 
 
