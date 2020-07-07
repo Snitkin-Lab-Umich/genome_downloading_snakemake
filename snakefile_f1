@@ -15,7 +15,7 @@ rule get_SRA_nums:
     'refs/{biosamp}.txt'
   shell:
     '''
-    source /etc/profile.d/http_proxy.sh
+    source /etc/profile.d/http_proxy.sh #internet connection
     esearch -db sra -query {wildcards.biosamp} </dev/null | efetch -format docsum | xtract -pattern Runs -element Run@acc > {output[0]}
     '''
 
