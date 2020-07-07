@@ -14,7 +14,7 @@ rule download_genome:
     'downloaded_assemblies/{SRA}_2.fastq'
   shell:
     '''
-    source /etc/profile.d/http_proxy.sh
+    source /etc/profile.d/http_proxy.sh #internet connection
     /nfs/esnitkin/bin_group/sratoolkit.2.9.1-1-centos_linux64/bin/fasterq-dump {wildcards.SRA} -O downloaded_assemblies
     '''
 
