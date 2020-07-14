@@ -20,9 +20,9 @@ Snakemake:
 NCBI API Key:
 - An API key is necessary if you are downloading a large number of genomes from NCBI.
 - To get an API key, register for an NCBI account [here](https://www.ncbi.nlm.nih.gov/account/?back_url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fmyncbi%2F). Go to the "Settings" page in your account, then click "Create an API Key" under "API Key Management".
-- To use the API key, create an environment variable called `ENTREZ_KEY` in your `~/.bashrc`.
+- To use the API key, create an environment variable called `NCBI_API_KEY` in your `~/.bashrc`.
 ```
-ENTREZ_KEY={your key}
+NCBI_API_KEY={your key}
 ```
 
 Caching: 
