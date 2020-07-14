@@ -20,7 +20,7 @@ Snakemake:
 NCBI API Key:
 - An API key is necessary if you are downloading a large number of genomes from NCBI.
 - To get an API key, register for an NCBI account [here](https://www.ncbi.nlm.nih.gov/account/?back_url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fmyncbi%2F). Go to the "Settings" page in your account, then click "Create an API Key" under "API Key Management".
-- To use the API key, create an environment variable called `NCBI_API_KEY` in your `~/.bashrc`.
+- To use the API key, create an environment variable called `NCBI_API_KEY` in your `~/.bashrc` or conda environment (see Conda section). 
 ```
 NCBI_API_KEY={your key}
 ```
@@ -78,6 +78,16 @@ To create and activate the conda environment:
 ```
 conda env create -f download_genomes.yaml # you only have to do this once
 conda activate download_genomes # you have to do this every time 
+```
+Because we are running the pipeline within the conda environment, the API Key environment variable must exist in the conda environment. 
+To [make an environment variable in a conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#setting-environment-variables), activate the environment then: 
+```
+conda env config vars set NCBI_API_KEY={your key}
+```
+Then re-activate the environment
+```
+conda activate download_genomes
+conda env config vars list #check whether the variable is set
 ```
 
 ## Running the genome downloading snakemake pipeline on the cluster
