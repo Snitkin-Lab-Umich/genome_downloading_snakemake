@@ -44,20 +44,21 @@ esearch -db sra -query {Biosample number} </dev/null | efetch -format docsum | x
   3. Download the genomes associated with each SRA number 
 - We have lots of genomes to download, which could be done in a loop, but snakemake can run the jobs in parallel which is especially helpful for steps 1 and 3.
 
-## Snakemake and Conda
-
-Visit this guide to [snakemake setup](https://github.com/Snitkin-Lab-Umich/Snakemake_setup) (including conda) to get started. 
-
-A downfall of snakemake: 
-- Because the number of genomes to download in step 3 is not known until the end of step 1, we cannot write a snakemake file to accomodate both step 1 and step 3. This requires some linearity which snakemake does not allow for. We did try implementing [checkpoints](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution) and [sub-workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#sub-workflows), but neither allowed us to create a new wildcard in the middle of a snakefile. 
-
-### Download this repo
+## Download this repo
 
 First, go to the directory where you want to dowload the repo. We recommend a directory in scratch because these files take up a lot of space. 
 Next, run the following command:
 ```
 git clone https://github.com/Snitkin-Lab-Umich/genome_downloading_snakemake.git
 ```
+
+## Snakemake and Conda
+
+Visit this guide to [snakemake setup](https://github.com/Snitkin-Lab-Umich/Snakemake_setup) (including conda) to get started. 
+
+A downfall of snakemake: 
+- Because the number of genomes to download in step 3 is not known until the end of step 1, we cannot write a snakemake file to accomodate both step 1 and step 3. This requires some linearity which snakemake does not allow for. 
+- We did try implementing [checkpoints](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#data-dependent-conditional-execution) and [sub-workflows](https://snakemake.readthedocs.io/en/stable/snakefiles/modularization.html#sub-workflows), but neither allowed us to create a new wildcard in the middle of a snakefile. 
 
 To create and activate the conda environment:
 ```
